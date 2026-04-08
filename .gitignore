@@ -1,0 +1,85 @@
+# ──────────────────────────────────────────
+#  Python
+# ──────────────────────────────────────────
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.so
+*.egg
+*.egg-info/
+dist/
+build/
+*.whl
+.env
+*.db
+*.sqlite
+*.sqlite3
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Pytest / coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.log
+
+# Uploads and generated data (never commit user files)
+backend/uploads/
+backend/faiss_store/
+backend/chroma_db/
+
+# Debug / scratch / local-only files
+backend/debug_*.py
+backend/debug_*.txt
+backend/diagnose_*.py
+backend/diagnose_*.txt
+backend/check_*.py
+backend/rag_test.txt
+backend/doc_status.txt
+
+# ──────────────────────────────────────────
+#  Node / Next.js
+# ──────────────────────────────────────────
+node_modules/
+frontend/node_modules/
+frontend/.next/
+frontend/package-lock.json
+frontend/out/
+frontend/.env
+frontend/.env.local
+frontend/.env.production.local
+frontend/.env.development.local
+
+# Build artifacts / temp outputs
+frontend/build2.txt
+frontend/build_error.txt
+frontend/build_output.txt
+frontend/lint.json
+frontend/lint_output.txt
+frontend/tsc_output.txt
+frontend/tsconfig.tsbuildinfo
+frontend/fix_dark_mode.ps1
+
+# ──────────────────────────────────────────
+#  OS / IDE
+# ──────────────────────────────────────────
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# ──────────────────────────────────────────
+#  Root-level temp build logs
+# ──────────────────────────────────────────
+build_log*.txt
+build_output.txt
+build_appeal.txt
+test_pipeline.py
+ARCHITECTURE_SVG_PROMPT.md

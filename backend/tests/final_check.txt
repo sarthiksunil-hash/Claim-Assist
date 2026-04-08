@@ -1,0 +1,32 @@
+﻿============================= test session starts =============================
+collecting ... collected 19 items
+
+tests/test_pipeline.py::TestPipelineEndpoints::test_latest_result_empty_for_new_user PASSED [  5%]
+tests/test_pipeline.py::TestPipelineEndpoints::test_agents_list_endpoint_returns_agents PASSED [ 10%]
+tests/test_pipeline.py::TestPipelineEndpoints::test_knowledge_insurance_endpoint PASSED [ 15%]
+tests/test_pipeline.py::TestPipelineEndpoints::test_knowledge_medical_endpoint PASSED [ 21%]
+tests/test_pipeline.py::TestPipelineEndpoints::test_knowledge_search_empty_query PASSED [ 26%]
+tests/test_pipeline.py::TestPipelineEndpoints::test_knowledge_search_with_query PASSED [ 31%]
+tests/test_pipeline.py::TestPipelineRunValidation::test_run_pipeline_missing_required_fields PASSED [ 36%]
+tests/test_pipeline.py::TestPipelineRunValidation::test_run_pipeline_missing_patient_name PASSED [ 42%]
+tests/test_pipeline.py::TestPipelineRunValidation::test_run_pipeline_invalid_amount_type PASSED [ 47%]
+tests/test_pipeline.py::TestPipelineUserIsolation::test_two_users_get_separate_latest_results PASSED [ 52%]
+tests/test_pipeline.py::TestPipelineUserIsolation::test_claims_list_is_per_user PASSED [ 57%]
+tests/test_pipeline.py::TestClaimsEndpoints::test_list_claims_returns_valid_schema PASSED [ 63%]
+tests/test_pipeline.py::TestClaimsEndpoints::test_get_nonexistent_claim_returns_not_found_response PASSED [ 68%]
+tests/test_pipeline.py::TestAppealsEndpoints::test_list_appeals_returns_valid_schema FAILED [ 73%]
+tests/test_pipeline.py::TestAppealsEndpoints::test_generate_appeal_missing_required_fields PASSED [ 78%]
+tests/test_pipeline.py::TestAppealsEndpoints::test_generate_appeal_returns_letter_text PASSED [ 84%]
+tests/test_pipeline.py::TestDashboardStats::test_dashboard_stats_valid_schema PASSED [ 89%]
+tests/test_pipeline.py::TestDashboardStats::test_dashboard_stats_numeric_types PASSED [ 94%]
+tests/test_pipeline.py::TestDashboardStats::test_dashboard_stats_without_header PASSED [100%]
+
+================================== FAILURES ===================================
+_________ TestAppealsEndpoints.test_list_appeals_returns_valid_schema _________
+tests\test_pipeline.py:132: in test_list_appeals_returns_valid_schema
+    assert isinstance(data["appeals"], list)
+E   assert False
+E    +  where False = isinstance({}, list)
+=========================== short test summary info ===========================
+FAILED tests/test_pipeline.py::TestAppealsEndpoints::test_list_appeals_returns_valid_schema
+======================== 1 failed, 18 passed in 1.92s =========================

@@ -1,0 +1,29 @@
+# Default: don't auto-normalize line endings (avoid large diff delays)
+* -text
+
+# Explicitly set text files
+*.py text eol=lf
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.sql text eol=lf
+*.txt text eol=lf
+*.env text eol=lf
+*.example text eol=lf
+*.ini text eol=lf
+*.cfg text eol=lf
+
+# Binary — never touch
+*.db binary
+*.sqlite binary
+*.sqlite3 binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.pdf binary
+*.whl binary

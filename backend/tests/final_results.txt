@@ -1,0 +1,18 @@
+﻿============================= test session starts =============================
+collected 91 items
+
+tests\test_auth.py ...................                                   [ 20%]
+tests\test_documents.py .............                                    [ 35%]
+tests\test_nlp.py .......................                                [ 60%]
+tests\test_ocr.py .................                                      [ 79%]
+tests\test_pipeline.py ...................                               [100%]
+
+============================== warnings summary ===============================
+tests/test_documents.py::TestPerUserDataIsolation::test_user_a_and_user_b_get_separate_lists
+  C:\Users\sunil\AppData\Local\Programs\Python\Python310\lib\unittest\mock.py:1128: RuntimeWarning: coroutine 'AsyncMockMixin._execute_mock_call' was never awaited
+    self.call_args = _call
+  Enable tracemalloc to get traceback where the object was allocated.
+  See https://docs.pytest.org/en/stable/how-to/capture-warnings.html#resource-warnings for more info.
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================= 91 passed, 1 warning in 20.98s ========================

@@ -1,0 +1,35 @@
+# Web framework
+fastapi==0.104.1
+uvicorn[standard]==0.24.0
+python-multipart==0.0.6
+pydantic==2.5.2
+aiofiles==23.2.1
+
+# Database
+sqlalchemy==2.0.23
+psycopg2-binary==2.9.9
+python-dotenv==1.0.0
+supabase==2.3.0
+
+# HTTP client
+httpx==0.25.2
+
+# Authentication & security
+PyJWT>=2.8.0
+passlib[bcrypt]>=1.7.4
+
+# PDF generation
+reportlab>=4.0
+
+# PDF text extraction
+pdfplumber>=0.10.3
+PyPDF2>=3.0.1
+PyMuPDF>=1.23.0
+
+# AI / LLM
+groq>=0.4.2
+
+# Vector search & embeddings
+faiss-cpu>=1.7.4
+sentence-transformers>=2.6.1
+numpy>=1.24.0

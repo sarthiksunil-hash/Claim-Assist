@@ -1,0 +1,56 @@
+services:
+  # ──────────────────────────────────────────
+  # Backend — FastAPI (Python)
+  # ──────────────────────────────────────────
+  - type: web
+    name: claimassist-backend
+    runtime: python
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    plan: free
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.0
+      - key: APP_ENV
+        value: production
+      - key: SUPABASE_URL
+        sync: false
+      - key: SUPABASE_KEY
+        sync: false
+      - key: SUPABASE_DB_URL
+        sync: false
+      - key: GROQ_API_KEY
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: SMTP_HOST
+        value: smtp.gmail.com
+      - key: SMTP_PORT
+        value: "587"
+      - key: SMTP_EMAIL
+        sync: false
+      - key: SMTP_PASSWORD
+        sync: false
+      - key: SMTP_SENDER_NAME
+        value: ClaimAssist Support
+      - key: CORS_ORIGINS
+        sync: false   # set to your frontend Render URL after deployment
+
+  # ──────────────────────────────────────────
+  # Frontend — Next.js (Node)
+  # ──────────────────────────────────────────
+  - type: web
+    name: claimassist-frontend
+    runtime: node
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    startCommand: npm run start
+    plan: free
+    envVars:
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: NEXT_PUBLIC_API_URL
+        sync: false   # set to your backend Render URL after deployment
+      - key: PORT
+        value: "3000"
