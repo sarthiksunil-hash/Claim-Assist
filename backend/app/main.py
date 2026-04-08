@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from dotenv import load_dotenv
 import os
+import threading
 
 from app.routers import documents, claims, appeals, knowledge, auth, pipeline, chat
 from app.database.db import engine, Base
@@ -69,19 +70,28 @@ async def health_check():
     }
 
 
-# ── Startup event: index knowledge bases into ChromaDB ──
-@app.on_event("startup")
-async def startup_index_knowledge_bases():
-    """Index IRDAI and medical knowledge bases into ChromaDB on startup."""
+def _bg_index_knowledge_bases():
+    """Run KB indexing in background so server starts fast."""
     try:
         from app.services.vector_store import index_knowledge_bases
         indexed = index_knowledge_bases()
         if indexed:
-            print("[Startup] Knowledge bases indexed into ChromaDB")
+            print("[BG] Knowledge bases indexed successfully")
         else:
-            print("[Startup] Knowledge base indexing skipped or failed (non-fatal)")
+            print("[BG] Knowledge base indexing skipped or unavailable (non-fatal)")
     except Exception as e:
-        print(f"[Startup] KB indexing error (non-fatal): {e}")
+        print(f"[BG] KB indexing error (non-fatal): {e}")
+
+
+@app.on_event("startup")
+async def startup_event():
+    """Bind port immediately, then kick off heavy tasks in background thread."""
+    print("[Startup] ClaimAssist AI starting up — port binding now")
+    # Run model download + KB indexing in a daemon thread
+    # so uvicorn can bind the port without waiting
+    t = threading.Thread(target=_bg_index_knowledge_bases, daemon=True)
+    t.start()
+    print("[Startup] Background KB indexing thread started")
 
 
 @app.get("/api/dashboard/stats", tags=["Dashboard"])

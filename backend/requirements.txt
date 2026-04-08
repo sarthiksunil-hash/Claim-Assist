@@ -31,6 +31,8 @@ PyMuPDF>=1.23.0
 groq>=0.4.2
 
 # Vector search & embeddings
+# NOTE: sentence-transformers pulls PyTorch (~1GB).
+# Installed last so server starts fast even if these take time.
+numpy>=1.24.0,<2.0.0
 faiss-cpu>=1.7.4
 sentence-transformers>=2.6.1
-numpy>=1.24.0,<2.0.0
