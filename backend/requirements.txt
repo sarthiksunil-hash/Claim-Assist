@@ -3,6 +3,7 @@ fastapi==0.104.1
 uvicorn[standard]==0.24.0
 python-multipart==0.0.6
 pydantic==2.5.2
+pydantic-settings==2.1.0
 aiofiles==23.2.1
 
 # Database
@@ -32,4 +33,4 @@ groq>=0.4.2
 # Vector search & embeddings
 faiss-cpu>=1.7.4
 sentence-transformers>=2.6.1
-numpy>=1.24.0
+numpy>=1.24.0,<2.0.0
