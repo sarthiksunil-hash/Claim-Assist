@@ -10,10 +10,12 @@ aiofiles==23.2.1
 sqlalchemy==2.0.23
 psycopg2-binary==2.9.9
 python-dotenv==1.0.0
-supabase==2.3.0
 
-# HTTP client — version controlled by supabase (needs <0.25.0)
-httpx>=0.24.0,<0.25.0
+# Supabase — use 2.10+ which is compatible with current gotrue/httpx
+supabase==2.10.0
+
+# HTTP client
+httpx>=0.26.0,<0.28.0
 
 # Authentication & security
 PyJWT>=2.8.0
@@ -27,12 +29,13 @@ pdfplumber>=0.10.3
 PyPDF2>=3.0.1
 PyMuPDF>=1.23.0
 
-# AI / LLM
+# AI / LLM — Groq handles all AI chat (no local model needed)
 groq>=0.4.2
 
-# Vector search & embeddings
-# NOTE: sentence-transformers pulls PyTorch (~1GB).
-# Installed last so server starts fast even if these take time.
+# Vector search — optional, app falls back gracefully if unavailable
+# NOTE: sentence-transformers downloads PyTorch + HuggingFace models (~1GB)
+#       which fails on Render free tier (DNS restricted during startup).
+#       FAISS/embeddings are disabled on Render; Groq handles RAG directly.
+# faiss-cpu>=1.7.4
+# sentence-transformers>=2.6.1
 numpy>=1.24.0,<2.0.0
-faiss-cpu>=1.7.4
-sentence-transformers>=2.6.1

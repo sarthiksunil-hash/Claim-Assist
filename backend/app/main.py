@@ -71,8 +71,20 @@ async def health_check():
 
 
 def _bg_index_knowledge_bases():
-    """Run KB indexing in background so server starts fast."""
+    """Run KB indexing in background so server starts fast.
+    
+    Completely safe — any exception (ImportError, DNS failure, etc.)
+    is caught here and never propagates to the main process.
+    """
     try:
+        # Check if sentence-transformers is available before even trying
+        import importlib
+        if importlib.util.find_spec("sentence_transformers") is None:
+            print("[BG] sentence-transformers not installed — skipping KB indexing")
+            return
+        if importlib.util.find_spec("faiss") is None:
+            print("[BG] faiss not installed — skipping KB indexing")
+            return
         from app.services.vector_store import index_knowledge_bases
         indexed = index_knowledge_bases()
         if indexed:
@@ -80,7 +92,7 @@ def _bg_index_knowledge_bases():
         else:
             print("[BG] Knowledge base indexing skipped or unavailable (non-fatal)")
     except Exception as e:
-        print(f"[BG] KB indexing error (non-fatal): {e}")
+        print(f"[BG] KB indexing error (non-fatal, server continues): {e}")
 
 
 @app.on_event("startup")
